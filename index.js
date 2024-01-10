@@ -4,13 +4,13 @@ const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits, ActivityType, EmbedBuilder } = require('discord.js');
 const { token } = require('./config.js');
 
- // GASからの受信(botの常時起動)
-const http = require('http');
-http.createServer(function(request, response)
-{
-  response.writeHead(200, {'Content-Type': 'text/plain'});
-  response.end('Bot is online!');
-}).listen(8080);
+// GASからの受信(botの常時起動)
+//const http = require('http');
+//http.createServer(function(request, response)
+//{
+//  response.writeHead(200, {'Content-Type': 'text/plain'});
+//  response.end('Bot is online!');
+//}).listen(8080);
 
 // コマンドから取得した値を用いてembed用変数を生成する関数
 function changeVariable(gameValue) {
