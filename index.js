@@ -68,6 +68,8 @@ client.on(Events.InteractionCreate, async interaction => {
   }
   // コマンド別の処理を実行
   try {
+    // スコープ外でも使えるように宣言
+    let inputcode = null;
     // 'コード配信' コマンドが発行された場合の処理
     if (interaction.commandName === 'コード配信') {
       await interaction.deferReply();
@@ -79,7 +81,7 @@ client.on(Events.InteractionCreate, async interaction => {
         if (codeChannel) {
           // 各オプションの値を取得して変数に格納
           const game = interaction.options.getString('game');
-          const inputcode = interaction.options.getString('inputcode');
+          inputcode = interaction.options.getString('inputcode');
           const deadline = interaction.options.getInteger('deadline');
           // 関数を実行
           changeVariable(game);
@@ -128,7 +130,7 @@ client.on(Events.InteractionCreate, async interaction => {
     }
     // 'コード配信' コマンドにおいて保留したレスポンスを完結させる
     if (interaction.commandName === 'コード配信') {
-      await interaction.editReply(`${gamename}コードを送信しました`); 
+      await interaction.editReply(`${gamename}:${inputcode}を送信しました`); 
     }
   } 
   catch (error) {
